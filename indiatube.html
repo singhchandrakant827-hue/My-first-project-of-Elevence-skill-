@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* प्लेयर का बैकग्राउंड और लेआउट */
+        
         .player-container {
             max-width: 4500px;
             margin: 30px auto;
@@ -115,33 +115,31 @@
     </div>
 </div>
 <script>
-     // वीडियो एलिमेंट को सेलेक्ट करना
+     
     const video = document.getElementById("myVideo");
     const muteBtn = document.getElementById("muteBtn");
 
-    // 1. वीडियो प्ले करने का फंक्शन
     function playVideo() {
         video.play();
     }
 
-    // 2. वीडियो पॉज़ करने का फंक्शन
+    
     function pauseVideo() {
         video.pause();
     }
 
-    // 3. वीडियो आगे-पीछे (Skip) करने का फंक्शन
+    
     function skip(value) {
         video.currentTime += value;
     }
-
-    // 4. आवाज़ कम-ज्यादा करने का फंक्शन
+   
     function volumeChange(value) {
         if (video.volume + value >= 0 && video.volume + value <= 1) {
             video.volume += value;
         }
     }
 
-    // 5. म्यूट और अनम्यूट करने का फंक्शन
+
     function toggleMute() {
         if (video.muted) {
             video.muted = false;
