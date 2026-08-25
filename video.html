@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Call</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #f0f2f5; }
+        .video-container { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
+        video { width: 45%; max-width: 400px; border-radius: 10px; background: #222; transform: scaleX(-1); }
+        button { padding: 10px 20px; font-size: 16px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+
+    <h2> Video Call</h2>
+    
+    <div class="video-container">
+    
+        <div>
+            <h3> local video</h3>
+            <video id="localVideo" autoplay playsinline muted></video>
+        </div>
+    
+        <div>
+            <h3>Remote video</h3>
+            <video id="remoteVideo" autoplay playsinline></video>
+        </div>
+    </div>
+
+    <button id="callButton">Video call</button>
+    <button id="screenButton">Screen Share</button><br><br>
+    <button id="chatButton">Chat</button>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script src="script.js sever.js"></script>
+    
+</body>
+</html>

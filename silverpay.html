@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paid Video Access</title>
+    <!-- Razorpay Checkout Script -->
+    <script src="https://razorpay.com"></script>
+    <style>
+        .video-container {
+            position: relative;
+            width: 640px;
+            height: 360px;
+            background: #000;
+        }
+        .pay-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            z-index: 10;
+        }
+        .pay-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        video {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="video-container">
+    <!-- Payment Overlay -->
+    <div id="paymentOverlay" class="pay-overlay">
+        <h2>This video is premium</h2>
+        <p>Pay 40 rupees to unlock Silver plan for 1 month.</p>
+        <button class="pay-btn" onclick="initiatePayment()">Unlock Video</button>
+    </div>
+
+    <!-- Hidden Video Element -->
+    <video id="premiumVideo" controls controlsList="nodownload" style="display:none;">
+        <!-- The source will be injected dynamically after payment verification -->
+    </video>
+</div>
+
+<script>
+async function initiatePayment() {
+    // Step 1: Create an order on your backend server
+    const response = await fetch('/create-order', { method: 'POST' });
+    const order = await response.json();
+
+    // Step 2: Configure Razorpay Checkout options
+    const options = {
+        "key": "YOUR_RAZORPAY_KEY_ID", // Replace with your Live/Test Key ID
+        "amount": order.amount,
+        "currency": "INR",
+        "name": "Premium Video Portal",
+        "description": "Unlock Special Tutorial Video",
+        "order_id": order.id, 
+        "handler": async function (response){
+            // Step 3: Send payment details to server for security verification
+            const verifyResponse = await fetch('/verify-payment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    razorpay_order_id: response.razorpay_order_id,
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_signature: response.razorpay_signature
+                })
+            });
+
+            const result = await verifyResponse.json();
+            
+            if(result.status === 'success') {
+                unlockVideo(result.videoUrl);
+            } else {
+                alert("Payment verification failed!");
+            }

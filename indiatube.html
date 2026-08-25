@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* प्लेयर का बैकग्राउंड और लेआउट */
+        .player-container {
+            max-width: 4500px;
+            margin: 30px auto;
+            background: #222;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        
+        video {
+            width: 100%;
+            border-radius: 4px;
+            background: #000;
+        }
+
+        /* बटन की स्टाइलिंग */
+        .controls {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: 0.6s;
+        }
+
+        button:hover {
+            background: #07640b;
+        }
+
+        .btn-danger{ background: #f44336; }
+        .btn-danger:hover { background: #da190b; }
+        
+        .btn-info { background: #008CBA; }
+        .btn-info:hover { background: #007399; }
+    </style>
+
+</head>
+<body>
+    
+<header class="header id=header">
+     <a href="#" class="logo">India-Tube Website</a>
+        <div class="search-bar">
+            <input type="text" placeholder="Search", >
+            <button style="width:60px; height: 30px; border-radius: 50px; text-align: center;">search</button>
+    
+        </div>
+        <nav class="navbar" id="navbar">
+        <a href="profile.html">Profile
+        <a href="about.html" class="nav-lik">About</a>
+        <a href="login.html" class="nav-lik login-btn">login</a>
+        </nav>
+    <div class="hanburger" id="hanburger">
+        <span></span><span></span><span></span>
+    </div>
+</header>  <div class="container">
+        <aside> 
+           
+            <hr/>
+            <ul>
+                <li> <a href="home.html">🏠 Home</a></li>
+                <li> <a href="suscription.html">🔔 Subscriptions</a></li>
+                <li><a href="liabrary.html";>📚 Library</a></li>
+                <li><a href="like.html">👍Likes</a></li>
+                
+            </ul>
+
+        </aside>  <!-- Video Feed Area -->
+    
+
+         <div class="player-container ">
+    
+    <video id="myVideo">
+        <source src="https://www.youtube.com" type="video/mp4">
+    </video>
+
+    
+    <div class="controls">  
+                       
+        <a href="https://www.youtube.com/video"; alt="_blank"  class="login-btn">Free video</a>
+                     
+    
+        <a href="suscription.html"; alt="_blank" class="login-btn">Premium Video</a>
+
+    </div><br>
+    <div class="controls">
+
+        <button onclick="playVideo()">▶ Play</button>
+        <button class="btn-danger" onclick="pauseVideo()">⏸ Pause</button>
+        <button class="btn-info" onclick="skip(-10)">⏪ -10s</button>
+        <button class="btn-info" onclick="skip(10)">⏩ +10s</button>
+        <button onclick="volumeChange(0.1)">🔊 Vol +</button>
+        <button onclick="volumeChange(-0.1)">🔉 Vol -</button>
+        <button id="muteBtn" onclick="toggleMute()">🔇 Mute</button>
+            
+</div>
+    </div>
+</div>
+<script>
+     // वीडियो एलिमेंट को सेलेक्ट करना
+    const video = document.getElementById("myVideo");
+    const muteBtn = document.getElementById("muteBtn");
+
+    // 1. वीडियो प्ले करने का फंक्शन
+    function playVideo() {
+        video.play();
+    }
+
+    // 2. वीडियो पॉज़ करने का फंक्शन
+    function pauseVideo() {
+        video.pause();
+    }
+
+    // 3. वीडियो आगे-पीछे (Skip) करने का फंक्शन
+    function skip(value) {
+        video.currentTime += value;
+    }
+
+    // 4. आवाज़ कम-ज्यादा करने का फंक्शन
+    function volumeChange(value) {
+        if (video.volume + value >= 0 && video.volume + value <= 1) {
+            video.volume += value;
+        }
+    }
+
+    // 5. म्यूट और अनम्यूट करने का फंक्शन
+    function toggleMute() {
+        if (video.muted) {
+            video.muted = false;
+            muteBtn.innerText = "🔇 Mute";
+        } else {
+            video.muted = true;
+            muteBtn.innerText = "🔊 Unmute";
+        }
+    }
+    
+  
+    // hanburger logic//
+    const hanburger=document.getElementById("hanburger")
+    //navbar logic//
+    const navbar=document.getElementById("navbar")
+    hanburger.addEventListener("click",()=>{
+        navbar.classList.toggle("active")
+        hanburger.classList.toggle("open")
+
+    })
+
+    // scroll logic//
+    const header=document.getElementById("header")
+    window.addEventListener("scroll",()=>{
+        if(window.screenY>20){
+            header.classList.add("scrolled")
+
+        }
+        else{
+            header.classlist.remove("scrolled")
+
+        }
+    })
+
+</script>
+<footer class=" footer footer-text">
+    <p>@2026 India-tube website. All rights reserved.</p>
+</footer>
+
+
+</body>
+    </html>

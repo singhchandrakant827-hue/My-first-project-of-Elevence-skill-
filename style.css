@@ -1,0 +1,267 @@
+  * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Roboto', Arial, sans-serif;
+             
+        }
+        
+        body { 
+            display: flex; 
+            flex-direction: column; 
+            height: 100vh; 
+            background-color: #f9f9f9; 
+        }
+        
+        /* Header / Navbar */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 10px 20px; 
+            background-color: #ffffff; 
+            border-bottom: 1px solid #e5e5e5; 
+        }
+        .header{
+            display: flex;
+            justify-content:space-between;
+            align-items:left;
+            padding: 12px 5%;
+            background:white;
+            border-bottom: 1px solid transparent;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background 0.3 ease box shadow 0.3 ease border 0.3 ease;
+               }
+        .header.scrolled{
+             background:grey;
+             box-shadow: 0 3px 10px rgba(0,0,0,0,);
+             border-bottom: 1px solid whitesmoke;
+
+                 }
+        .logo { 
+            
+            font-weight: bold; 
+            color: #ff0000; 
+            font-size: 40px; 
+            text-decoration:italic; 
+        }
+        
+        .search-bar input { 
+            width: 300px; 
+            padding:12px 4px;
+            border: 1px solid #ccc; 
+            border-radius: 20px; 
+            outline: none; 
+        }
+    .btn-Search{
+        display: flex;
+        font-size:large;
+        border: 1px;
+        border-color: rgb(13, 194, 201);
+        border-radius:1px;
+    }
+    .btn-Search:hover{
+        background-color: #ff0000;
+    }
+    .navbar{
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    }
+    .nav-lik{
+    text-decoration: none;
+    font-size: 1rem;
+    color: black;
+    transition: 0.5s;
+    }
+    .nav-lik:hover{
+    background-color: blue;
+    color: beige;
+    }.login-btn{
+    padding: 7px 16px;
+    background:purple;
+    color: aliceblue ;
+    border-radius: 8px;
+    transition: 0.3s;
+
+}
+
+.login-btn{
+    padding: 7px 16px;
+    background: green;
+    color: aliceblue ;
+    border-radius: 8px;
+    transition: 0.3s;
+
+}
+.login-btn:hover{
+    background-color:blue;
+}
+
+        /* Main Body Layout */
+        .container { 
+            display: flex; 
+            flex: 1; 
+            overflow: hidden; 
+        }
+        
+        aside { 
+            width: 240px; 
+            background-color: #ffffff; 
+            padding: 15px; 
+            border-right: 1px solid #e5e5e5; 
+            overflow-y: auto; 
+        }
+        
+        aside ul { 
+            list-style: none; 
+        }
+        
+        aside li { 
+            padding: 12px 10px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            transition: background-color 0.2s; 
+        }
+        
+        aside li:hover { 
+            background-color: #f2f2f2; 
+        }
+        
+        /* Video Section Grid */
+        main { 
+            flex: 1; 
+            padding: 20px; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+            gap: 20px; 
+            overflow-y: auto; 
+        }
+        
+        .video-card { 
+            background-color: #ffffff; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .controls {  
+        
+             display: flex;
+            justify-content:space-around; 
+            color:red; 
+        }
+        
+        .video-info { 
+            padding: 10px; 
+        }
+        
+        .video-title { 
+            font-size: 14px; 
+            font-weight: bold; 
+            margin-bottom: 5px; 
+            line-height: 1.4;
+        }
+        
+        .video-author { 
+            font-size: 12px; 
+            color: #606060; 
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            aside { width: 180px; }
+            .search-bar input { width: 200px; }
+            main { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+        }
+
+        @media (max-width: 480px) {
+            aside { display: none; }
+            .search-bar input { width: 150px; }
+            main { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+        }
+
+.hanburger{
+    display:none;
+    justify-self: end;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.footer{                               
+    background-color: rgb(225, 149, 235);
+    color:black
+}
+.footer-text{
+    justify-content: center;
+    font-size: x-large;
+    font-style: italic;
+    text-align: center;
+}
+/* mobile reposive part */
+/* hanburger open*/
+.hanburger span{
+    
+    width: 25px;
+    height: 3px;
+    justify-content:left;
+    background: black;
+    transition: 0.3s;
+
+}
+/* hanburger close */
+.hanburger.open span:nth-child(1){
+    transform:rotate(25deg) translateY(8px);
+}
+ .hanburger.open span:nth-child(2){
+    opacity: 0;
+}
+.hanburger.open span:nth-child(3){
+    transform:rotate(-25deg) translateY(-8px);
+}
+/* tablets view css*/
+@media (max-width:900px){
+    .hanburger{
+        .container.hero{
+            text-align: center;
+        }
+}
+    .navbar{
+        display: none;
+    }
+    
+}
+/* mobile view css */
+@media(max-width:700px) {
+    .hanburger{
+        display: flex;
+    }
+    .navbar{
+        display:none;
+        position: absolute;
+        top: 65px;
+        right: 5%;
+        flex-direction: column;
+        background-color:whitesmoke;
+        color: black;
+        padding: 18px 20px;
+        width:250px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0,);
+        gap: 15px;
+    }
+    .navbar.active{
+        display: flex;
+    }
+    
+}
